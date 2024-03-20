@@ -31,6 +31,8 @@ def prepare_data(src: os.PathLike, dst: os.PathLike) -> None:
 
     dirs = os.listdir(src)
     pose_folders = []
+
+    # find all the folders of the different pose classes
     for folder in dirs:
         folder_path = os.path.join(src, folder)
         if os.path.isfile(folder_path):
@@ -38,6 +40,8 @@ def prepare_data(src: os.PathLike, dst: os.PathLike) -> None:
 
         pose_folders.append(folder)
 
+
+    # detect the keypoints of pose images and record to the dictionary 
     pose_keypoints = {}
     for pose in pose_folders:
         result = list_keypoints(os.path.join(src, pose))
